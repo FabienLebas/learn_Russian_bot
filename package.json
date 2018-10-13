@@ -2,7 +2,7 @@
   "name": "learn_russian_bot",
   "version": "1.0.0",
   "description": "Facebook Messenger bot to teach me Russian vocabulary",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
