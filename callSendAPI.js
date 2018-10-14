@@ -16,7 +16,7 @@ function callSendAPI(sender_psid, response) {
 
   fetch(`https://graph.facebook.com/v2.6/me/messages?access_token=${facebookToken}`, {
     method: "POST",
-    body: request_body,
+    body: JSON.stringify(request_body),
     headers: { 'Content-Type': 'application/json' }
   })
   .then(res => res.json())
