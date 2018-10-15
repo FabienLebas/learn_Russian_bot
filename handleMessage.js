@@ -5,11 +5,27 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   // Check if the message contains text
-  if (received_message.text) {
+  if (received_message.text === "Bonjour") {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Bonjour, tu m'as envoyé : "${received_message.text}". C'est un bon début !`
+      "text": `Bonjour ! Ca va ?`,
+      "buttons": [
+        {
+          "type": "postback",
+          "title": "Oui !",
+          "payload": "yes"
+        },
+        {
+          "type": "postback",
+          "title": "Non, pas trop",
+          "payload": "no"
+        }
+      ]
+    }
+  } else {
+    response = {
+      "text": `Tu m'as envoyé : "${received_message.text}". C'est un bon début !`
     }
   }
 
