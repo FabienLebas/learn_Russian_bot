@@ -4,8 +4,6 @@ const handleMessage = require("./handleMessage");
 const handlePostback = require("./handlePostback");
 const callSendAPI = require("./callSendAPI");
 
-// 'use strict';
-
 const app = express();
 const port = process.env.PORT || 1337;
 const facebookToken = process.env.facebookToken;
