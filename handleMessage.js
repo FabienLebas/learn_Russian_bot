@@ -10,6 +10,7 @@ function handleMessage(sender_psid, received_message) {
     // Create the payload for a basic text message
     response = {
       "attachment":{
+        "type":"template",
         "payload": {
           "template_type":"button",
           "text":"Bonjour ! Ca va ?",
