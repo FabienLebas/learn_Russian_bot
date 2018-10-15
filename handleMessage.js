@@ -9,21 +9,23 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "payload": {
-      "template_type":"button",
-      "text":"Bonjour ! Ca va ?",
-      "buttons":[
-        {
-          "type": "postback",
-          "title": "Oui",
-          "payload": "yes"
-        },{
-          "type": "postback",
-          "title": "Bof. Pas trop",
-          "payload": "no"
+      "message":{
+        "payload": {
+          "template_type":"button",
+          "text":"Bonjour ! Ca va ?",
+          "buttons":[
+            {
+              "type": "postback",
+              "title": "Oui",
+              "payload": "yes"
+            },{
+              "type": "postback",
+              "title": "Bof. Pas trop",
+              "payload": "no"
+            }
+          ]
         }
-      ]
-    }
+      }
     }
   } else {
     response = {
