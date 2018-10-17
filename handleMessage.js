@@ -2,6 +2,7 @@ const callSendAPI = require("./callSendAPI");
 const checkUser = require("./queries/checkUser");
 const addUser = require("./queries/addUser");
 const containsHello = require("./textAnalysis/containsHello");
+const addMisunderstanding = require("./queries/addMisunderstanding");
 
 function handleMessage(sender_psid, received_message) {
   //if the user does not exist, create an entry in the users database
@@ -41,6 +42,11 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } else {
+    addMisunderstanding(sender_psid, received_message.text)
+    .catch(error => {
+      console.warn(`Error while adding misunderstanding : ${error}`);
+    });
+    
     response = {
       "text": `Euh désolé, je ne parle pas encore parfaitement Français... mais je vais demander à бабушка !`
     }
