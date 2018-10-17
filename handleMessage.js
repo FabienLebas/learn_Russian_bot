@@ -1,6 +1,18 @@
 const callSendAPI = require("./callSendAPI");
+const checkUser = require("./queries/checkUser");
+const addUser = require("./queries/addUser");
 
 function handleMessage(sender_psid, received_message) {
+  checkUser(sender_psid)
+  .then(result => {
+    if (result === false){
+      addUser(sender_psid)
+    }
+  })
+  .catch(error => {
+    console.warn(`Error while checking / inserting user ${sender_psid} : ${error}`);
+  })
+
   let response;
   if (received_message.text === "Bonjour") {
     response = {
