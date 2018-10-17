@@ -1,6 +1,7 @@
 const callSendAPI = require("./callSendAPI");
 const checkUser = require("./queries/checkUser");
 const addUser = require("./queries/addUser");
+const containsHello = require("./textAnalysis/containsHello");
 
 function handleMessage(sender_psid, received_message) {
   //if the user does not exist, create an entry in the users database
@@ -15,9 +16,10 @@ function handleMessage(sender_psid, received_message) {
   })
 
   //check if user says hello, if so, then start
-
   let response;
-  if (received_message.text === "Bonjour") {
+  // if (received_message.text === "Bonjour")
+  if (containsHello(received_message.text))
+  {
     response = {
       "attachment":{
         "type":"template",
@@ -40,7 +42,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } else {
     response = {
-      "text": `Tu m'as envoyé : "${received_message.text}". C'est un bon début !`
+      "text": `Euh désolé, je ne parle pas encore parfaitement Français... mais je vais demander à Babouchka !`
     }
   }
 
