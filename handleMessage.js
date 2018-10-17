@@ -3,6 +3,7 @@ const checkUser = require("./queries/checkUser");
 const addUser = require("./queries/addUser");
 
 function handleMessage(sender_psid, received_message) {
+  //if the user does not exist, create an entry in the users database
   checkUser(sender_psid)
   .then(result => {
     if (result === false){
@@ -12,6 +13,8 @@ function handleMessage(sender_psid, received_message) {
   .catch(error => {
     console.warn(`Error while checking / inserting user ${sender_psid} : ${error}`);
   })
+
+  //check if user says hello, if so, then start
 
   let response;
   if (received_message.text === "Bonjour") {

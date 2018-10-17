@@ -10,7 +10,7 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-  return fetch(`https://graph.facebook.com/v2.6/me/messages?access_token=${facebookToken}`, {
+  return fetch(`https://graph.facebook.com/v2.6/me/messages?access_token=${facebookToken}&nlp_configs?nlp_enabled=$NLP_ENABLED`, {
     method: "POST",
     body: JSON.stringify(request_body),
     headers: { 'Content-Type': 'application/json' }
