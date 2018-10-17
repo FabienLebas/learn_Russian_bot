@@ -42,7 +42,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } else {
     response = {
-      "text": `Euh désolé, je ne parle pas encore parfaitement Français... mais je vais demander à Babouchka !`
+      "text": `Euh désolé, je ne parle pas encore parfaitement Français... mais je vais demander à бабушка !`
     }
   }
 
