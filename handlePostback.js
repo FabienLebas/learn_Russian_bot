@@ -11,6 +11,8 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Super ! Moi aussi." }
   } else if (payload === 'no') {
     response = { "text": "Ah zut ! Un petit exercice de vocabulaire de Russe va te permettre d'aller mieux." }
+  } else if (payload === "stop"){
+    response = { "text": "Cкоро увидимся"}
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
