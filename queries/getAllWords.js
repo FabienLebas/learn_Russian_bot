@@ -14,12 +14,4 @@ function getAllWords(){
   })
 }
 
-getAllWords()
-.then(result => {
-  console.log(result);
-})
-.catch(error => {
-  console.warn(`error : ${error}`);
-})
-
 module.exports = getAllWords;

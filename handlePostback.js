@@ -50,7 +50,7 @@ function handlePostback(sender_psid, received_postback) {
           "type":"template",
           "payload": {
             "template_type":"button",
-            "text": `${allWords[indexChosen].russian}. Tu t'en souvenais ?`,
+            "text": `${allWords[wordIndex].russian}. Tu t'en souvenais ?`,
             "buttons":[
               {
                 "type": "postback",
