@@ -75,6 +75,9 @@ function handlePostback(sender_psid, received_postback) {
     callSendAPI(sender_psid, response);
 
   })
+  .catch(error => {
+    console.warn(`Error while handling postback : ${error}`);
+  })
 
 }
 
