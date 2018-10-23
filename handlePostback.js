@@ -44,7 +44,7 @@ function handlePostback(sender_psid, received_postback) {
     } else if (payload[0] === "stop"){
       response = { "text": "Cкоро увидимся"}
     } else if (payload[0] === "iKnow" || payload[0] === "iDontKnow" || payload[0] === "seeRussian"){
-      let wordIndex = payload[1];
+      let wordIndex = payload[1] - 1;
       response = {
         "attachment":{
           "type":"template",
