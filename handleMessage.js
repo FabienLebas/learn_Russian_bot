@@ -53,7 +53,7 @@ function handleMessage(sender_psid, received_message) {
       }
       return result;
     } else if (helloMessage && !firstTime){
-      const indexChosen = Math.floor(Math.random() * allWords);
+      const indexChosen = Math.floor(Math.random() * allWords.length);
       response = {
         "attachment":{
           "type":"template",

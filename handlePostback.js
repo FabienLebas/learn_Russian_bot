@@ -16,7 +16,7 @@ function handlePostback(sender_psid, received_postback) {
   .then(result => {
     // Set the response based on the postback payload
     if (payload[0] === 'start') {
-      const indexChosen = Math.floor(Math.random() * allWords);
+      const indexChosen = Math.floor(Math.random() * allWords.length);
       response = {
         "attachment":{
           "type":"template",
