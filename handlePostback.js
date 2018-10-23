@@ -23,7 +23,7 @@ function handlePostback(sender_psid, received_postback) {
           "payload": {
             "template_type":"button",
             "text": `${allWords[indexChosen].french}`,
-            "buttons":[
+            "buttons":[/*
               {
                 "type": "postback",
                 "title": "Да",
@@ -32,10 +32,14 @@ function handlePostback(sender_psid, received_postback) {
                 "type": "postback",
                 "title": "Нет",
                 "payload": `iDontKnow ${allWords[indexChosen].id}`
-              },{
+              },*/{
                 "type": "postback",
                 "title": "Voir en Russe",
                 "payload": `seeRussian ${allWords[indexChosen].id}`
+              },{
+                "type": "postback",
+                "title": "Stop",
+                "payload": `stop`
               }
             ]
           }
