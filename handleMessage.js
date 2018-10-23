@@ -45,7 +45,7 @@ function handleMessage(sender_psid, received_message) {
               },{
                 "type": "postback",
                 "title": "Pas tout de suite",
-                "payload": "no"
+                "payload": "stop"
               }
             ]
           }
@@ -59,7 +59,7 @@ function handleMessage(sender_psid, received_message) {
           "type":"template",
           "payload": {
             "template_type":"button",
-            "text": `On démarre ! Est-ce que tu te rappelles comment ont dit ${allWords[indexChosen].french} ?`,
+            "text": `Bonjour ! On démarre : est-ce que tu te rappelles comment ont dit ${allWords[indexChosen].french} ?`,
             "buttons":[
               {
                 "type": "postback",
