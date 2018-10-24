@@ -46,13 +46,13 @@ function handlePostback(sender_psid, received_postback) {
     } else if (payload[0] === "stop"){
       response = { "text": "Cкоро увидимся"}
     } else if (payload[0] === "seeRussian"){
-      let wordIndex = payload[1] - 1;
+      let word = allWords.find(element => element.id === payload[1]);
       response = {
         "attachment":{
           "type":"template",
           "payload": {
             "template_type":"button",
-            "text": `${allWords[wordIndex].russian}. Tu t'en souvenais ?`,
+            "text": `${word.russian}. Tu t'en souvenais ?`,
             "buttons":[
               {
                 "type": "postback",
