@@ -41,7 +41,7 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "C'est parti !",
-                "payload": "start"
+                "payload": "ask"
               },{
                 "type": "postback",
                 "title": "Pas tout de suite",
@@ -63,16 +63,12 @@ function handleMessage(sender_psid, received_message) {
             "buttons":[
               {
                 "type": "postback",
-                "title": "Да",
-                "payload": `iKnow ${allWords[indexChosen].id}`
-              },{
-                "type": "postback",
-                "title": "Нет",
-                "payload": `iDontKnow ${allWords[indexChosen].id}`
-              },{
-                "type": "postback",
                 "title": "Voir en Russe",
                 "payload": `seeRussian ${allWords[indexChosen].id}`
+              },{
+                "type": "postback",
+                "title": "Stop",
+                "payload": `stop`
               }
             ]
           }
@@ -90,7 +86,7 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "Continuer",
-                "payload": "start"
+                "payload": "ask"
               },{
                 "type": "postback",
                 "title": "Arrêter",

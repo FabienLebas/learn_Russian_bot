@@ -1,8 +1,8 @@
 const callSendAPI = require("./callSendAPI");
 const getAllWords = require("./queries/getAllWords");
+const addKnownWord = require("./queries/addKnownWord");
 
 function handlePostback(sender_psid, received_postback) {
-  let response;
   let allWords;
 
   // Get the payload for the postback
@@ -14,8 +14,15 @@ function handlePostback(sender_psid, received_postback) {
     return words;
   })
   .then(result => {
+    if(payload[0] === "ask" && payload[1] !== undefined){
+      return addKnownWord(sender_psid, payload[1])
+    } else {
+      return result;
+    }
+  })
+  .then(result => {
     // Set the response based on the postback payload
-    if (payload[0] === 'start') {
+    if (payload[0] === 'ask') {
       const indexChosen = Math.floor(Math.random() * allWords.length);
       response = {
         "attachment":{
@@ -23,16 +30,7 @@ function handlePostback(sender_psid, received_postback) {
           "payload": {
             "template_type":"button",
             "text": `${allWords[indexChosen].french}`,
-            "buttons":[/*
-              {
-                "type": "postback",
-                "title": "Да",
-                "payload": `iKnow ${allWords[indexChosen].id}`
-              },{
-                "type": "postback",
-                "title": "Нет",
-                "payload": `iDontKnow ${allWords[indexChosen].id}`
-              },*/{
+            "buttons":[{
                 "type": "postback",
                 "title": "Voir en Russe",
                 "payload": `seeRussian ${allWords[indexChosen].id}`
@@ -47,7 +45,7 @@ function handlePostback(sender_psid, received_postback) {
       }
     } else if (payload[0] === "stop"){
       response = { "text": "Cкоро увидимся"}
-    } else if (payload[0] === "iKnow" || payload[0] === "iDontKnow" || payload[0] === "seeRussian"){
+    } else if (payload[0] === "seeRussian"){
       let wordIndex = payload[1] - 1;
       response = {
         "attachment":{
@@ -59,11 +57,11 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type": "postback",
                 "title": "Да",
-                "payload": `start`//et ajouter
+                "payload": `ask ${payload[1]}`
               },{
                 "type": "postback",
                 "title": "Нет",
-                "payload": `start`//ne pas ajouter
+                "payload": `ask`
               },{
                 "type": "postback",
                 "title": "Stop",
@@ -73,11 +71,10 @@ function handlePostback(sender_psid, received_postback) {
           }
         }
       }
-
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
-
+    return response;
   })
   .catch(error => {
     console.warn(`Error while handling postback : ${error}`);
