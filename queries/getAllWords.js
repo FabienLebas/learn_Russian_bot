@@ -10,7 +10,7 @@ function getAllWords(){
   })
   .catch(error => {
     client.end();
-    console.warn(`Error in getting user : ${error}`);
+    console.warn(`Error in getting all words : ${error}`);
   })
 }
 

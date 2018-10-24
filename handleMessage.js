@@ -3,7 +3,7 @@ const checkUser = require("./queries/checkUser");
 const addUser = require("./queries/addUser");
 const containsHello = require("./textAnalysis/containsHello");
 const addMisunderstanding = require("./queries/addMisunderstanding");
-const getAllWords = require("./queries/getAllWords");
+const getWordsExceptKnown = require("./queries/getWordsExceptKnown");
 
 function handleMessage(sender_psid, received_message) {
   let firstTime = false;
@@ -21,7 +21,7 @@ function handleMessage(sender_psid, received_message) {
     }
   })
   .then(result => {
-    return getAllWords();
+    return getWordsExceptKnown(sender_psid);
   })
   .then(words => {
     allWords = words;
