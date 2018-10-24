@@ -1,5 +1,5 @@
 const callSendAPI = require("./callSendAPI");
-const getAllWords = require("./queries/getAllWords");
+const getWordsExceptKnown = require("./queries/getWordsExceptKnown");
 const addKnownWord = require("./queries/addKnownWord");
 
 function handlePostback(sender_psid, received_postback) {
@@ -8,7 +8,7 @@ function handlePostback(sender_psid, received_postback) {
   // Get the payload for the postback
   let payload = received_postback.payload.split(" ");
 
-  return getAllWords()
+  return getWordsExceptKnown(sender_psid)
   .then(words => {
     allWords = words;
     return words;
