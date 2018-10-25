@@ -12,6 +12,8 @@ const facebookID = process.env.facebookID;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
+
 // Creates the endpoint for our webhook
 app.post('/webhook', (req, res) => {
   let body = req.body;
