@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/FabienLebas/learn_Russian_bot#readme",
   "dependencies": {
+    "animate.css": "^3.7.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "node-fetch": "^2.2.0",
