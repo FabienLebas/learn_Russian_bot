@@ -38,23 +38,26 @@
       padding: 6px 12px;
     }
 
-    /* @keyframes fadeInLeft2 {
-      from {
-        opacity: 0;
-        -webkit-transform: translate3d(-100%, 0, 0);
-        transform: translate3d(-100%, 0, 0);
-      }
-
-      to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
+    .goButton{
+      margin: 10px;
+      border-top-left-radius: 1em;
+      border-bottom-right-radius: 1em;
+      border-top-right-radius: 1em;
+      border-bottom-left-radius: 1em;
     }
-    .fadeInLeft2 {
-      -webkit-animation-name: fadeInLeft2;
-      animation-name: fadeInLeft2;
-    } */
+
+    .messenger_big{
+      margin-top: 8px;
+    }
+
+    .whatSergeyCanDo{
+      margin-top:50px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 50px;
+      width: 100%;
+      background-color:
+    }
   </style>
 
   <title>Dis Sergey?</title>
@@ -64,7 +67,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white text-dark">
     <a class="navbar-brand" href="https://www.messenger.com/t/170874580486539" target="_blank">
-      <img src="Facebook_Messenger.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="Facebook_Messenger.png" width="30" height="30" class="d-inline-block align-top" alt="Facebook_Messenger image">
       Démarrer
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,20 +98,30 @@
     <h4 class="text-center">Et si tu m'aidais à apprendre le Russe ?</h4>
 
     <div class="fakeScreen mx-auto">
-      <div class="row justify-content-start">
-        <p class="user animated fadeInLeft delay-1s">Bonjour Sergey !</p>
-      </div>
       <div class="row justify-content-end">
-        <p class="sergey animated fadeInRight delay-3s">Bonjour. Que puis-je faire pour vous ?</p>
+        <p class="sergey animated fadeInRight delay-1s">Bonjour Sergey !</p>
       </div>
       <div class="row justify-content-start">
-        <p class="user animated fadeInLeft delay-5s">J'aimerais bien apprendre le Russe. Tu peux m'aider ?</p>
+        <img class="animated fadeInLeft delay-3s"  src="icone_sergey_grand.png" alt="Sergey image">
+        <p class="user animated fadeInLeft delay-3s">Bonjour. Que puis-je faire pour vous ?</p>
       </div>
       <div class="row justify-content-end">
-        <p class="sergey animated fadeInRight delay-7s">Oui, bien sûr. Je te propose de commencer par un peu de vocabulaire. Ca te va ?</p>
+        <p class="sergey animated fadeInRight delay-5s">J'aimerais bien apprendre le Russe. Tu peux m'aider ?</p>
       </div>
-
+      <div class="row justify-content-start">
+        <img class="animated fadeInLeft delay-7s"  src="icone_sergey_grand.png" alt="Sergey image">
+        <p class="user animated fadeInLeft delay-7s">Oui, bien sûr. Je te propose de commencer par un peu de vocabulaire. Ca te va ?</p>
+      </div>
+      <div class="row justify-content-center animated fadeInRight delay-9s">
+        <img src="Facebook_Messenger.png" width="60" height="60" class="messenger_big" alt="Facebook_Messenger image">
+        <a class=" btn btn-success goButton" href="https://www.messenger.com/t/170874580486539" target="_blank">
+          <h4>Démarrer</h4>
+        </a>
+      </div>
     </div>
+    <!-- <div class="whatSergeyCanDo container mx-auto bg-light text-dark">
+
+    </div> -->
 
   </div>
 
