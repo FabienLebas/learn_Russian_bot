@@ -42,10 +42,6 @@ function handleMessage(sender_psid, received_message) {
                 "type": "postback",
                 "title": "C'est parti !",
                 "payload": "ask"
-              },{
-                "type": "postback",
-                "title": "Pas tout de suite",
-                "payload": "stop"
               }
             ]
           }
@@ -65,10 +61,6 @@ function handleMessage(sender_psid, received_message) {
                 "type": "postback",
                 "title": "Voir en Russe",
                 "payload": `seeRussian ${allWords[indexChosen].id}`
-              },{
-                "type": "postback",
-                "title": "Stop",
-                "payload": `stop`
               }
             ]
           }
@@ -87,10 +79,6 @@ function handleMessage(sender_psid, received_message) {
                 "type": "postback",
                 "title": "Continuer",
                 "payload": "ask"
-              },{
-                "type": "postback",
-                "title": "Arrêter",
-                "payload": "stop"
               }
             ]
           }
