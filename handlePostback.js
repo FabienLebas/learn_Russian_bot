@@ -34,10 +34,6 @@ function handlePostback(sender_psid, received_postback) {
                 "type": "postback",
                 "title": "Voir en Russe",
                 "payload": `seeRussian ${allWords[indexChosen].id}`
-              },{
-                "type": "postback",
-                "title": "Stop",
-                "payload": `stop`
               }
             ]
           }
@@ -62,10 +58,6 @@ function handlePostback(sender_psid, received_postback) {
                 "type": "postback",
                 "title": "Нет",
                 "payload": `ask`
-              },{
-                "type": "postback",
-                "title": "Stop",
-                "payload": `stop`
               }
             ]
           }
