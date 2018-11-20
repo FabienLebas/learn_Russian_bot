@@ -21,19 +21,16 @@ function handleMessage(sender_psid, received_message) {
       return result;
     }
   })
-  .then(result => {
-    return getWordsExceptKnown(sender_psid);
-  })
+  .then(result => getWordsExceptKnown(sender_psid))
   .then(words => {
     allWords = words;
     return words;
   })
   .then(result => {
-    const greetings = ["bonjour", "salut", "hi", "hello", "ça va", "ca va"];
-    const askLevel = ["niveau", "combien", "où"];
+    const greetings = ["bonjour", "salut", "hi", "hello", "ça va", "ca va", "démarrer", "commencer"];
+    const askLevel = ["niveau", "combien", "où", "d'où"];
     const isHelloMessage = containsKnownWords(received_message.text, greetings);
     const isLevelMessage = containsKnownWords(received_message.text, askLevel);
-    // const helloMessage = containsHello(received_message.text);
     if (isHelloMessage && firstTime)
     {
       response = {
@@ -72,26 +69,11 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       return indexChosen;
-    } else if (isLevelMessage){
+    } else if (isLevelMessage){ //user is asking for his level
       return getKnownWords(sender_psid)
       .then(knownWords => {
         response = {
-          "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}. On démarre quand tu veux.`
-          /*
-          "attachment":{
-            "type":"template",
-            "payload": {
-              "template_type":"generic",
-              "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}`,
-              "buttons":[
-                {
-                  "type": "postback",
-                  "title": "Démarrer",
-                  "payload": `ask`
-                }
-              ]
-            }
-          }*/
+          "text": `Tu connais ${knownWords.length} mots. Il t'en reste ${allWords.length} dans ce niveau. On démarre quand tu veux.`
         }
         return knownWords;
       })
@@ -118,10 +100,7 @@ function handleMessage(sender_psid, received_message) {
       return addMisunderstanding(sender_psid, received_message.text);
     }
   })
-  .then(result => {
-    // Sends the response message
-    return callSendAPI(sender_psid, response);
-  })
+  .then(result => callSendAPI(sender_psid, response)) // Sends the response message
   .catch(error => {
     console.warn(`Error while processing message of user ${sender_psid} : ${error}`);
   })
