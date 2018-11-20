@@ -1,9 +1,10 @@
 const callSendAPI = require("./callSendAPI");
 const checkUser = require("./queries/checkUser");
 const addUser = require("./queries/addUser");
-const containsHello = require("./textAnalysis/containsHello");
+const containsKnownWords = require("./textAnalysis/containsKnownWords");
 const addMisunderstanding = require("./queries/addMisunderstanding");
 const getWordsExceptKnown = require("./queries/getWordsExceptKnown");
+const getKnownWords = require("./queries/getKnownWords");
 
 function handleMessage(sender_psid, received_message) {
   let firstTime = false;
@@ -28,8 +29,12 @@ function handleMessage(sender_psid, received_message) {
     return words;
   })
   .then(result => {
-    const helloMessage = containsHello(received_message.text);
-    if (helloMessage && firstTime)
+    const greetings = ["bonjour", "salut", "hi", "hello", "ça va", "ca va"];
+    const askLevel = ["niveau", "combien", "où"];
+    const isHelloMessage = containsKnownWords(received_message.text, greetings);
+    const isLevelMessage = containsKnownWords(received_message.text, askLevel);
+    // const helloMessage = containsHello(received_message.text);
+    if (isHelloMessage && firstTime)
     {
       response = {
         "attachment":{
@@ -48,7 +53,7 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       return result;
-    } else if (helloMessage && !firstTime){
+    } else if (isHelloMessage && !firstTime){
       const indexChosen = Math.floor(Math.random() * allWords.length);
       response = {
         "attachment":{
@@ -67,7 +72,34 @@ function handleMessage(sender_psid, received_message) {
         }
       }
       return indexChosen;
-    } else { //message was not understood
+    } else if (isLevelMessage){
+      return getKnownWords(sender_psid)
+      .then(knownWords => {
+        response = {
+          response = {
+            "attachment":{
+              "type":"template",
+              "payload": {
+                "template_type":"button",
+                "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}`,
+                "buttons":[
+                  {
+                    "type": "postback",
+                    "title": "Démarrer",
+                    "payload": `ask`
+                  }
+                ]
+              }
+            }
+          }
+        }
+      })
+      .catch(error => {
+        console.warn(`Error while getting know words user ${sender_psid} error : ${error}`);
+      })
+    }
+
+    else { //message was not understood
       response = {
         "attachment":{
           "type":"template",
