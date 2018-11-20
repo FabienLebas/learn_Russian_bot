@@ -91,13 +91,12 @@ function handleMessage(sender_psid, received_message) {
             }
           }
         }
+        return knownWords;
       })
       .catch(error => {
         console.warn(`Error while getting know words user ${sender_psid} error : ${error}`);
       })
-    }
-
-    else { //message was not understood
+    } else { //message was not understood
       response = {
         "attachment":{
           "type":"template",
