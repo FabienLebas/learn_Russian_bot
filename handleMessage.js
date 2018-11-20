@@ -76,20 +76,18 @@ function handleMessage(sender_psid, received_message) {
       return getKnownWords(sender_psid)
       .then(knownWords => {
         response = {
-          response = {
-            "attachment":{
-              "type":"template",
-              "payload": {
-                "template_type":"button",
-                "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}`,
-                "buttons":[
-                  {
-                    "type": "postback",
-                    "title": "Démarrer",
-                    "payload": `ask`
-                  }
-                ]
-              }
+          "attachment":{
+            "type":"template",
+            "payload": {
+              "template_type":"button",
+              "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}`,
+              "buttons":[
+                {
+                  "type": "postback",
+                  "title": "Démarrer",
+                  "payload": `ask`
+                }
+              ]
             }
           }
         }
