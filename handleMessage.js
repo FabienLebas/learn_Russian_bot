@@ -79,15 +79,15 @@ function handleMessage(sender_psid, received_message) {
           "attachment":{
             "type":"template",
             "payload": {
-              "template_type":"button",
+              // "template_type":"button",
               "text": `Tu connais ${knownWords.length} mots sur ${allWords.length}`,
-              "buttons":[
-                {
-                  "type": "postback",
-                  "title": "Démarrer",
-                  "payload": `ask`
-                }
-              ]
+              // "buttons":[
+              //   {
+              //     "type": "postback",
+              //     "title": "Démarrer",
+              //     "payload": `ask`
+              //   }
+              // ]
             }
           }
         }
