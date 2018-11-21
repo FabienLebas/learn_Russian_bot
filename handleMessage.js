@@ -27,6 +27,7 @@ function handleMessage(sender_psid, received_message) {
   })
   .then(result => determineLevel(sender_psid))
   .then(level => {
+    console.log("je suis au level " + level);
     myLevel = level;
     return level;
   })
