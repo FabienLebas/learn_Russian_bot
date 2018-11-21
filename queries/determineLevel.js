@@ -11,7 +11,11 @@ function determineLevel(user_id){
   .then(result => {
     allWords = result[0];
     knownWords = result[1];
-    const maxLevelReached = Math.max(...knownWords.map(e => e.level));
+    // const maxLevelReached = Math.max(...knownWords.map(e => e.level));
+    let maxLevelReached = 1;
+    if (knownWords.length > 0){
+      maxLevelReached = Math.max(...knownWords.map(e => e.level));
+    }
     const knownWordsOfMaxLevel = knownWords.filter(e => parseInt(e.level, 10) === maxLevelReached);
     const ratioForNextLevel = 0.5;
     if (knownWordsOfMaxLevel.length  >= ratioForNextLevel * allWords.filter(e => parseInt(e.level, 10) === maxLevelReached).length){
