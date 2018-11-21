@@ -1,10 +1,10 @@
 const PG = require("pg");
 
-function getWordsExceptKnown(psid){
+function getWordsExceptKnown(psid, maxLevel){
   const client = new PG.Client();
   client.connect();
-  return client.query(`SELECT * FROM words WHERE id NOT IN (SELECT word_id FROM words_ok WHERE user_id = $1)`,
-[psid])
+  return client.query(`SELECT * FROM words WHERE id NOT IN (SELECT word_id FROM words_ok WHERE user_id = $1) AND level <= $2`,
+[psid, maxLevel])
   .then(result => {
     client.end();
     return result.rows;
