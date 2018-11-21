@@ -27,13 +27,11 @@ function handleMessage(sender_psid, received_message) {
   })
   .then(result => determineLevel(sender_psid))
   .then(level => {
-    console.log("je suis au level " + level);
     myLevel = level;
     return level;
   })
   .then(result => getWordsExceptKnown(sender_psid, myLevel))
   .then(words => {
-    console.log("je suis passé ici");
     allWords = words;
     return words;
   })
@@ -81,7 +79,7 @@ function handleMessage(sender_psid, received_message) {
       }
       return indexChosen;
     } else if (isLevelMessage){ //user is asking for his level
-      return Promise.all([getAllWordsOfLevel(myLevel), getKnownWordsOfLevel(myLevel)])
+      return Promise.all([getAllWordsOfLevel(myLevel), getKnownWordsOfLevel(sender_psid, myLevel)])
       .then(result => {
         response = {
           "text": `Tu es au niveau ${myLevel}. Tu connais ${result[1].length} mots sur les ${result[0].length} de ce niveau. Accroche-toi : à 50% tu passes au niveau supérieur !`
