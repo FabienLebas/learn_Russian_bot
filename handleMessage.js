@@ -5,11 +5,15 @@ const containsKnownWords = require("./textAnalysis/containsKnownWords");
 const addMisunderstanding = require("./queries/addMisunderstanding");
 const getWordsExceptKnown = require("./queries/getWordsExceptKnown");
 const getKnownWords = require("./queries/getKnownWords");
+const determineLevel = require("./queries/determineLevel");
+const getAllWordsOfLevel = require("./queries/getAllWordsOfLevel");
+const getKnownWordsOfLevel = require("./queries/getKnownWordsOfLevel");
 
 function handleMessage(sender_psid, received_message) {
   let firstTime = false;
   let response;
   let allWords;
+  let myLevel = 1;
 
   //if the user does not exist, create an entry in the users database
   return checkUser(sender_psid)
@@ -21,7 +25,12 @@ function handleMessage(sender_psid, received_message) {
       return result;
     }
   })
-  .then(result => getWordsExceptKnown(sender_psid))
+  .then(result => determineLevel(sender_psid))
+  .then(level => {
+    myLevel = level;
+    return level;
+  })
+  .then(result => getWordsExceptKnown(sender_psid, myLevel))
   .then(words => {
     allWords = words;
     return words;
@@ -70,12 +79,12 @@ function handleMessage(sender_psid, received_message) {
       }
       return indexChosen;
     } else if (isLevelMessage){ //user is asking for his level
-      return getKnownWords(sender_psid)
-      .then(knownWords => {
+      return Promise.all([getAllWordsOfLevel(level), getKnownWordsOfLevel(level)])
+      .then(result => {
         response = {
-          "text": `Tu connais ${knownWords.length} mots. Il t'en reste ${allWords.length} dans ce niveau. On démarre quand tu veux.`
+          "text": `Tu es au niveau ${myLevel}. Tu connais ${result[1].length} mots sur les ${result[0].length} de ce niveau. Accroche-toi : à 50% tu passes au niveau supérieur !`
         }
-        return knownWords;
+        return result;
       })
       .catch(error => {
         console.warn(`Error while getting know words user ${sender_psid} error : ${error}`);
