@@ -33,6 +33,7 @@ function handleMessage(sender_psid, received_message) {
   })
   .then(result => getWordsExceptKnown(sender_psid, myLevel))
   .then(words => {
+    console.log("je suis passé ici");
     allWords = words;
     return words;
   })
