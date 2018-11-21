@@ -1,14 +1,21 @@
 const callSendAPI = require("./callSendAPI");
 const getWordsExceptKnown = require("./queries/getWordsExceptKnown");
 const addKnownWord = require("./queries/addKnownWord");
+const determineLevel = require("./queries/determineLevel");
 
 function handlePostback(sender_psid, received_postback) {
   let allWords;
+  let myLevel = 1;
 
   // Get the payload for the postback
   let payload = received_postback.payload.split(" ");
 
-  return getWordsExceptKnown(sender_psid)
+  return determineLevel(sender_psid)
+  .then(level => {
+    myLevel = level;
+    return level;
+  })
+  .then(result => getWordsExceptKnown(sender_psid, myLevel))
   .then(words => {
     allWords = words;
     return words;
