@@ -9,6 +9,7 @@ function determineLevel(user_id){
   let knownWords = [];
   return Promise.all([getAllWords(), getKnownWords(user_id)])
   .then(result => {
+    client.end();
     allWords = result[0];
     knownWords = result[1];
     // const maxLevelReached = Math.max(...knownWords.map(e => e.level));
@@ -25,6 +26,7 @@ function determineLevel(user_id){
     }
   })
   .catch(error => {
+    client.end();
     console.warn(`Error while determining level for user ${user_id} : ${error}`);
   })
 }
